@@ -250,6 +250,25 @@
                     android:textSize="@dimen/inputSize"
                     android:drawSelectorOnTop="true" />
             </LinearLayout>
+            
+            <!-- Frames Per Second Custom-->
+            <RelativeLayout
+                android:id="@+id/fpsCustomContainer"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/inputBackground"
+                android:layout_below="@id/fpsContainer"
+                android:visibility="gone">
+                <EditText
+                    android:id="@+id/fpsCustom"
+                    android:hint="24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:padding="@dimen/inputPadding"
+                    android:textSize="@dimen/inputSize"/>
+            </RelativeLayout> 
             <View
                 android:id="@+id/fpsContainerDivider"
                 android:layout_height="@dimen/inputBorderThickness"
@@ -413,13 +432,13 @@
                     android:padding="@dimen/inputPadding"
                     android:textSize="@dimen/inputSize"/>
 
-                <Spinner
-                    android:id="@+id/audioBitrateSpinner"
+                <EditText
+                    android:id="@+id/audioBitrateValue"
                     android:gravity="end"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:textSize="@dimen/inputSize"
-                    android:drawSelectorOnTop="true" />
+                    android:inputType="number"
+                    android:textSize="@dimen/inputSize"/>
             </LinearLayout>
             <View
                 android:id="@+id/audioBitrateContainerDivider"
