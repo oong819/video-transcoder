@@ -136,10 +136,11 @@ public class MainActivity extends AppCompatActivity
     private Spinner videoCodecSpinner;
     private Spinner fpsSpinner;
     private Spinner resolutionSpinner;
+    private EditText fpsCustom;
     private EditText resolutionCustom;
     private EditText videoBitrateValue;
+    private EditText audioBitrateValue;
     private Spinner audioCodecSpinner;
-    private Spinner audioBitrateSpinner;
     private Spinner audioSampleRateSpinner;
     private Spinner audioChannelSpinner;
 
@@ -184,11 +185,12 @@ public class MainActivity extends AppCompatActivity
         containerSpinner = findViewById(R.id.containerSpinner);
         videoCodecSpinner = findViewById(R.id.videoCodecSpinner);
         fpsSpinner = findViewById(R.id.fpsSpinner);
+        fpsCustom = findViewById(R.id.fpsCustom);
         resolutionSpinner = findViewById(R.id.resolutionSpinner);
         resolutionCustom = findViewById(R.id.resolutionCustom);
         videoBitrateValue = findViewById(R.id.videoBitrateValue);
         audioCodecSpinner = findViewById(R.id.audioCodecSpinner);
-        audioBitrateSpinner = findViewById(R.id.audioBitrateSpinner);
+        audioBitrateValue = findViewById(R.id.audioBitrateValue);
         audioSampleRateSpinner = findViewById(R.id.audioSampleRateSpinner);
         audioChannelSpinner = findViewById(R.id.audioChannelSpinner);
 
@@ -638,7 +640,7 @@ public class MainActivity extends AppCompatActivity
     private List<String> getFfmpegEncodingArgs(String inputFilePath, Integer startTimeSec, Integer endTimeSec, Integer fullDurationSec,
                                                MediaContainer container, VideoCodec videoCodec, Integer videoBitrateK,
                                                String resolution, String fps, AudioCodec audioCodec, Integer audioSampleRate,
-                                               String audioChannel, Integer audioBitrateK, String destinationFilePath)
+                                               String audioChannel, String audioBitrateK, String destinationFilePath)
     {
         List<String> command = new LinkedList<>();
 
@@ -766,7 +768,6 @@ public class MainActivity extends AppCompatActivity
         String fps = (String)fpsSpinner.getSelectedItem();
         String resolution = (String)resolutionSpinner.getSelectedItem();
         AudioCodec audioCodec = (AudioCodec) audioCodecSpinner.getSelectedItem();
-        Integer audioBitrateK = (Integer) audioBitrateSpinner.getSelectedItem();
         Integer audioSampleRate = (Integer) audioSampleRateSpinner.getSelectedItem();
         String audioChannel = (String) audioChannelSpinner.getSelectedItem();
         int videoBitrateK = 0;
@@ -778,6 +779,18 @@ public class MainActivity extends AppCompatActivity
         }
 
         final String customString = getString(R.string.custom);
+
+        if(fps.equals(customString) && container.supportedVideoCodecs.size() > 0)
+        {
+            fps = fpsCustom.getText().toString();
+            try
+            {   // Check for valid float
+                Float.parseFloat(fps);
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, R.string.fpsValueInvalid, Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
 
         if(resolution.equals(customString) && container.supportedVideoCodecs.size() > 0)
         {
@@ -816,6 +829,16 @@ public class MainActivity extends AppCompatActivity
         catch(NumberFormatException e)
         {
             Toast.makeText(this, R.string.videoBitrateValueInvalid, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try
+        {
+            String audioBitrateK = audioBitrateSpinner.getText().toString();
+        }
+        catch(NumberFormatException e)
+        {
+            Toast.makeText(this, R.string.audioBitrateValueInvalid, Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -1170,13 +1193,15 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        LinkedList<String> fps = new LinkedList<>(Arrays.asList("15", "24", "23.98", "25", "29.97", "30", "50"));
+        LinkedList<String> fps = new LinkedList<>(Arrays.asList("15", "23.98", "24", "25", "29.97", "30", "50"));
         if(videoInfo.videoFramerate != null && fps.contains(videoInfo.videoFramerate) == false)
         {
             fps.add(videoInfo.videoFramerate);
             Collections.sort(fps);
         }
+        fps.addLast(customString);
         fpsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_textview, fps));
+        fpsSpinner.setOnItemSelectedListener(new SetCustomAdapter(customString, R.id.fpsCustomContainer));
 
         LinkedList<String> resolution = new LinkedList<>();
         if(videoInfo.videoResolution != null && resolution.contains(videoInfo.videoResolution) == false)
