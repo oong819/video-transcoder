@@ -39,3 +39,11 @@ jobs:
       run: ./gradlew testReleaseUnitTest
     - name: FindBugs
       run: ./gradlew findbugs
+    - name: GitHub release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{secrets.GITHUB_TOKEN}}"
+        automatic_release_tag: "latest"
+        prerelease: false
+        title: "Video Transcoder"
+        files: "app/build/outputs/apk/debug/app-debug.apk" 
