@@ -834,7 +834,7 @@ public class MainActivity extends AppCompatActivity
 
         try
         {
-            String audioBitrateK = audioBitrateSpinner.getText().toString();
+            String audioBitrateK = audioBitrateValue.getText().toString();
         }
         catch(NumberFormatException e)
         {
@@ -1264,14 +1264,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        List<Integer> audioBitrateK = new ArrayList<>(Arrays.asList(15, 24, 32, 64, 96, 128, 192, 256, 320, 384, 448, 512));
-        if(videoInfo.audioBitrateK != null && audioBitrateK.contains(videoInfo.audioBitrateK) == false)
-        {
-            audioBitrateK.add(videoInfo.audioBitrateK);
-            Collections.sort(audioBitrateK);
-        }
-        audioBitrateSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_textview, audioBitrateK));
-
         List<Integer> sampleRate = new ArrayList<>(Arrays.asList(8000, 11025, 16000, 22050, 24000, 32000, 44100, 48000));
         if(videoInfo.audioSampleRate != null && audioBitrateK.contains(videoInfo.audioSampleRate) == false)
         {
@@ -1320,7 +1312,7 @@ public class MainActivity extends AppCompatActivity
             defaultAudioBitrateK = 128;
         }
 
-        setSpinnerSelection(audioBitrateSpinner, defaultAudioBitrateK);
+        audioBitrateValue.setText(Integer.toString(defaultAudioBitrateK));
 
         if(videoInfo.audioSampleRate != null)
         {
