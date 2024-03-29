@@ -2,6 +2,12 @@ name: buildchecks
 # Build only on master branch changes in some directory
 # to avoid unecessary energy using for GitHub machines
 on:
+  push:
+    branches: [ testing ]
+    paths:
+      - 'app/**'
+      - 'gradle/**'
+      - '.github/workflows/'
   pull_request:
     branches: [ master ]
     paths:
