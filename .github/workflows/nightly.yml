@@ -1,4 +1,4 @@
-name: Android CI
+name: Nightly Build
 # Build only on master branch changes in some directory
 # to avoid unecessary energy using for GitHub machines
 on:
@@ -8,11 +8,6 @@ on:
       - 'app/**'
       - 'gradle/**'
       - '.github/workflows/**'
-  pull_request:
-    branches: [ master ]
-    paths:
-      - 'app/**'
-      - 'gradle/**'
   workflow_dispatch:
 
 jobs:
