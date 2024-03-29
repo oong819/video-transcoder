@@ -26,6 +26,8 @@ Seulement  ARM est supporté.</string>
 
     <string name="selectFileFirst">Tu dois choisir un fichier à encoder.</string>
     <string name="videoBitrateValueInvalid">La valeur Bitrate du video n\'est pas valide. N\'a pas pu encoder</string>
+    <string name="audioBitrateValueInvalid">La valeur Bitrate du audio n\'est pas valide. N\'a pas pu encoder</string>
+    <string name="fpsValueInvalid">La valeur FPS du video n\'est pas valide. N\'a pas pu encoder</string>
     <string name="encodingNotification">Encodant <xliff:g id="input_filename">%s</xliff:g></string>
     <string name="encodeStartConfirmation">Veux-tu encoder <xliff:g id="input_filename">%s</xliff:g> et sortir <xliff:g id="output_filename">%s</xliff:g> ?</string>
     <string name="transcodeSuccess">Encodage complété avec succés . Le fichier est enregistré vers :\n<xliff:g id="path">%s</xliff:g></string>
