@@ -771,6 +771,7 @@ public class MainActivity extends AppCompatActivity
         Integer audioSampleRate = (Integer) audioSampleRateSpinner.getSelectedItem();
         String audioChannel = (String) audioChannelSpinner.getSelectedItem();
         int videoBitrateK = 0;
+        int audioBitrateK = 0;
 
         if(videoInfo == null)
         {
@@ -822,8 +823,7 @@ public class MainActivity extends AppCompatActivity
             // Ignore video bitrate for GIF
             if(container != MediaContainer.GIF)
             {
-                String videoBitrateKStr = videoBitrateValue.getText().toString();
-                videoBitrateK = Integer.parseInt(videoBitrateKStr);
+                videoBitrateK = Integer.parseInt(videoBitrateValue.getText().toString(););
             }
         }
         catch(NumberFormatException e)
@@ -834,7 +834,7 @@ public class MainActivity extends AppCompatActivity
 
         try
         {
-            String audioBitrateK = audioBitrateValue.getText().toString();
+            audioBitrateK = Integr.parseInt(audioBitrateValue.getText().toString());
         }
         catch(NumberFormatException e)
         {
