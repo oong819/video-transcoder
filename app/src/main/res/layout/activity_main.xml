@@ -251,7 +251,7 @@
                     android:drawSelectorOnTop="true" />
             </LinearLayout>
             
-            <!-- Frames Per Second Custom-->
+            <!-- Frames Per Second Custom -->
             <RelativeLayout
                 android:id="@+id/fpsCustomContainer"
                 android:orientation="horizontal"
