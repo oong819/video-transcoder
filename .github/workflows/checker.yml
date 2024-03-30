@@ -7,7 +7,6 @@ on:
     paths:
       - 'app/**'
       - 'gradle/**'
-      - '.github/workflows/'
   pull_request:
     branches: [ master ]
     paths:
@@ -22,14 +21,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@latest
     - name: set up JDK 8
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@latest
       with:
         distribution: 'zulu'
         java-version: '8'
     - name: Build
-      run: ./gradlew assembleDebug
+      run: ./gradlew assembleDebug --stacktrace --debug
     - name: Save artifact
       uses: actions/upload-artifact@v4
       with:
