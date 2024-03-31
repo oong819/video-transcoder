@@ -31,7 +31,7 @@
     <string name="videoResolutionValueInvalid">Resolution value is invalid, could not encode.</string>
     <string name="videoBitrateValueInvalid">Video bitrate value is invalid, could not encode.</string>
     <string name="audioBitrateValueInvalid">Audio bitrate value is invalid, could not encode.</string>
-    <string name="fpsValueInvalid">Video fps value is invalid, could not encode.</string>
+    <string name="fpsValueInvalid">Video FPS value is invalid, could not encode.</string>
     <string name="encodingNotification">Encoding <xliff:g id="input_filename">%s</xliff:g></string>
     <string name="encodeStartConfirmation">Do you want to encode <xliff:g id="input_filename">%s</xliff:g> and output to <xliff:g id="output_filename">%s</xliff:g>?</string>
     <string name="transcodeSuccess">Encoding completed successfully. The file was written to:\n<xliff:g id="path">%s</xliff:g></string>
