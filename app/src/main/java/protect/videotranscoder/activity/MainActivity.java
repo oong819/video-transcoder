@@ -1265,7 +1265,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         List<Integer> sampleRate = new ArrayList<>(Arrays.asList(8000, 11025, 16000, 22050, 24000, 32000, 44100, 48000));
-        if(videoInfo.audioSampleRate != null && audioBitrateK == videoInfo.audioSampleRate == false)
+        if((videoInfo.audioSampleRate != null && audioBitrateK == videoInfo.audioSampleRate) == false)
         {
             sampleRate.add(videoInfo.audioSampleRate);
             Collections.sort(sampleRate);
