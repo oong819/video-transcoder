@@ -424,6 +424,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/inputBackground"
                 android:layout_below="@id/audioCodecContainerDivider"
+                android:paddingEnd="@dimen/inputPadding"
+                android:paddingRight="@dimen/inputPadding"
                 android:visibility="gone">
                 <TextView
                     android:text="@string/bitrate"
