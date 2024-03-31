@@ -640,7 +640,7 @@ public class MainActivity extends AppCompatActivity
     private List<String> getFfmpegEncodingArgs(String inputFilePath, Integer startTimeSec, Integer endTimeSec, Integer fullDurationSec,
                                                MediaContainer container, VideoCodec videoCodec, Integer videoBitrateK,
                                                String resolution, String fps, AudioCodec audioCodec, Integer audioSampleRate,
-                                               String audioChannel, String audioBitrateK, String destinationFilePath)
+                                               String audioChannel, Integer audioBitrateK, String destinationFilePath)
     {
         List<String> command = new LinkedList<>();
 
@@ -834,7 +834,7 @@ public class MainActivity extends AppCompatActivity
 
         try
         {
-            audioBitrateK = Integr.parseInt(audioBitrateValue.getText().toString());
+            audioBitrateK = Integer.parseInt(audioBitrateValue.getText().toString());
         }
         catch(NumberFormatException e)
         {
