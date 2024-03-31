@@ -823,7 +823,7 @@ public class MainActivity extends AppCompatActivity
             // Ignore video bitrate for GIF
             if(container != MediaContainer.GIF)
             {
-                videoBitrateK = Integer.parseInt(videoBitrateValue.getText().toString(););
+                videoBitrateK = Integer.parseInt(videoBitrateValue.getText().toString());
             }
         }
         catch(NumberFormatException e)
