@@ -52,7 +52,7 @@ dependencies {
     implementation 'protect:android-ffmpeg:release@aar'
     implementation 'com.crystal:crystalrangeseekbar:1.1.3'
     implementation 'commons-io:commons-io:2.6'
-    implementation group: 'com.google.guava', name: 'guava', version: '23.0'
+    implementation group: 'com.google.guava', name: 'guava', version: '23.0-android'
     implementation 'com.nononsenseapps:filepicker:4.2.1'
     implementation 'com.simplecityapps:recyclerview-fastscroll:1.0.18'
     implementation group: 'org.javatuples', name: 'javatuples', version: '1.2'
