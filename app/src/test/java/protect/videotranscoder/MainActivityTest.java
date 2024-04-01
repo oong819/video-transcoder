@@ -211,6 +211,7 @@ public class MainActivityTest
         Spinner audioSampleRateSpinner = activity.findViewById(R.id.audioSampleRateSpinner);
         Spinner audioChannelSpinner = activity.findViewById(R.id.audioChannelSpinner);
         View resolutionCustomContainer = activity.findViewById(R.id.resolutionCustomContainer);
+        View fpsCustomContainer = activity.findViewById(R.id.fpsCustomContainer);
 
         // Note, the resolution customer container is checked by itself later on
         int [] videoContainerIds = new int[]{R.id.videoCodecContainer, R.id.fpsContainer, R.id.resolutionContainer,
