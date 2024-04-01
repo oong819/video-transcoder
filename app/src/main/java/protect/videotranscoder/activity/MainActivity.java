@@ -1122,6 +1122,11 @@ public class MainActivity extends AppCompatActivity
                     findViewById(R.id.resolutionCustomContainer).setVisibility(View.GONE);
                 }
 
+                if(fpsSpinner.getSelectedItem().toString().equals(customString) == false)
+                {
+                    findViewById(R.id.fpsCustomContainer).setVisibility(View.GONE);
+                }
+
                 visibility = container.supportedAudioCodecs.size() > 0 ? View.VISIBLE : View.GONE;
 
                 for(int resId : AUDIO_SETTINGS_IDS)
@@ -1735,5 +1740,3 @@ public class MainActivity extends AppCompatActivity
                 })
                 .show();
     }
-
-}
