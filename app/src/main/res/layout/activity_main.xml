@@ -274,7 +274,7 @@
                 android:layout_height="@dimen/inputBorderThickness"
                 android:layout_width="match_parent"
                 android:background="@color/inputBorder"
-                android:layout_below="@id/fpsContainer"
+                android:layout_below="@id/fpsCustomContainer"
                 android:visibility="gone"/>
 
             <!-- Resolution -->
