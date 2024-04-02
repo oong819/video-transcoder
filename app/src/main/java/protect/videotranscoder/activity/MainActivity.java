@@ -1184,10 +1184,12 @@ public class MainActivity extends AppCompatActivity
                 if(value.equals(customString) && container.supportedVideoCodecs.size() > 0)
                 {
                     customField.setVisibility(View.VISIBLE);
+                    Toast.makeText(MainActivity.this, Long.toString(id, 36)+" Vis", 8000);
                 }
                 else
                 {
                     customField.setVisibility(View.GONE);
+                    Toast.makeText(MainActivity.this, Long.toString(id, 36)+" Gon", 8000);
                 }
             }
 
