@@ -11,6 +11,7 @@ import java.util.List;
  */
 public enum AudioCodec
 {
+    COPY("copy", "Copy", Collections.EMPTY_LIST),
     AAC("aac", "aac", Collections.EMPTY_LIST, Arrays.asList("1", "2")),
     MP3("mp3", "mp3", Collections.EMPTY_LIST, Arrays.asList("1", "2")),
     OPUS("libopus", "opus", Collections.EMPTY_LIST, Arrays.asList("1", "2")),
