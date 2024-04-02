@@ -13,6 +13,7 @@ import protect.videotranscoder.R;
  */
 public enum VideoCodec
 {
+    COPY("copy", "Copy", Collections.EMPTY_LIST, R.string.noReEncoding),
     // This is the built-in avi encoder instead of using the external libxvid library.
     AVI("mpeg4", "AVI", Arrays.asList("-vtag", "xvid"), null),
     // The 'preset' setting for h264 is changed from its default of 'medium'. The
