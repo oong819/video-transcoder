@@ -207,10 +207,11 @@ public class MainActivityTest
         Spinner resolutionSpinner = activity.findViewById(R.id.resolutionSpinner);
         EditText videoBitrateValue = activity.findViewById(R.id.videoBitrateValue);
         Spinner audioCodecSpinner = activity.findViewById(R.id.audioCodecSpinner);
-        Spinner audioBitrateSpinner = activity.findViewById(R.id.audioBitrateSpinner);
+        EditText audioBitrateValue = activity.findViewById(R.id.audioBitrateValue);
         Spinner audioSampleRateSpinner = activity.findViewById(R.id.audioSampleRateSpinner);
         Spinner audioChannelSpinner = activity.findViewById(R.id.audioChannelSpinner);
         View resolutionCustomContainer = activity.findViewById(R.id.resolutionCustomContainer);
+        View fpsCustomContainer = activity.findViewById(R.id.fpsCustomContainer);
 
         // Note, the resolution customer container is checked by itself later on
         int [] videoContainerIds = new int[]{R.id.videoCodecContainer, R.id.fpsContainer, R.id.resolutionContainer,
@@ -270,7 +271,6 @@ public class MainActivityTest
             }
 
             assertEquals(audioCodecSpinner.getSelectedItem().toString(), expected.audioCodec.ffmpegName);
-            assertEquals(audioBitrateSpinner.getSelectedItem().toString(), String.valueOf(expected.audioBitrateK));
             assertEquals(audioSampleRateSpinner.getSelectedItem().toString(), String.valueOf(expected.audioSampleRate));
             assertEquals(audioChannelSpinner.getSelectedItem().toString(), String.valueOf(expected.audioChannels));
         }
@@ -293,6 +293,17 @@ public class MainActivityTest
         {
             assertEquals(resolutionSpinner.getSelectedItem().toString(), expected.videoResolution);
             assertEquals(resolutionCustomContainer.getVisibility(), View.GONE);
+        }
+
+        // That same check with FPS
+        if(fpsSpinner.getSelectedItem().toString().equals(activity.getString(R.string.custom)))
+        {
+            assertEquals(fpsCustomContainer.getVisibility(), View.VISIBLE);
+        }
+        else
+        {
+            assertEquals(fpsSpinner.getSelectedItem().toString(), expected.videoFramerate);
+            assertEquals(fpsCustomContainer.getVisibility(), View.GONE);
         }
     }
 

@@ -136,10 +136,11 @@ public class MainActivity extends AppCompatActivity
     private Spinner videoCodecSpinner;
     private Spinner fpsSpinner;
     private Spinner resolutionSpinner;
+    private EditText fpsCustom;
     private EditText resolutionCustom;
     private EditText videoBitrateValue;
+    private EditText audioBitrateValue;
     private Spinner audioCodecSpinner;
-    private Spinner audioBitrateSpinner;
     private Spinner audioSampleRateSpinner;
     private Spinner audioChannelSpinner;
 
@@ -184,11 +185,12 @@ public class MainActivity extends AppCompatActivity
         containerSpinner = findViewById(R.id.containerSpinner);
         videoCodecSpinner = findViewById(R.id.videoCodecSpinner);
         fpsSpinner = findViewById(R.id.fpsSpinner);
+        fpsCustom = findViewById(R.id.fpsCustom);
         resolutionSpinner = findViewById(R.id.resolutionSpinner);
         resolutionCustom = findViewById(R.id.resolutionCustom);
         videoBitrateValue = findViewById(R.id.videoBitrateValue);
         audioCodecSpinner = findViewById(R.id.audioCodecSpinner);
-        audioBitrateSpinner = findViewById(R.id.audioBitrateSpinner);
+        audioBitrateValue = findViewById(R.id.audioBitrateValue);
         audioSampleRateSpinner = findViewById(R.id.audioSampleRateSpinner);
         audioChannelSpinner = findViewById(R.id.audioChannelSpinner);
 
@@ -766,10 +768,10 @@ public class MainActivity extends AppCompatActivity
         String fps = (String)fpsSpinner.getSelectedItem();
         String resolution = (String)resolutionSpinner.getSelectedItem();
         AudioCodec audioCodec = (AudioCodec) audioCodecSpinner.getSelectedItem();
-        Integer audioBitrateK = (Integer) audioBitrateSpinner.getSelectedItem();
         Integer audioSampleRate = (Integer) audioSampleRateSpinner.getSelectedItem();
         String audioChannel = (String) audioChannelSpinner.getSelectedItem();
         int videoBitrateK = 0;
+        int audioBitrateK = 0;
 
         if(videoInfo == null)
         {
@@ -778,6 +780,18 @@ public class MainActivity extends AppCompatActivity
         }
 
         final String customString = getString(R.string.custom);
+
+        if(fps.equals(customString) && container.supportedVideoCodecs.size() > 0)
+        {
+            fps = fpsCustom.getText().toString();
+            try
+            {   // Check for valid float
+                Float.parseFloat(fps);
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, R.string.fpsValueInvalid, Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
 
         if(resolution.equals(customString) && container.supportedVideoCodecs.size() > 0)
         {
@@ -809,13 +823,22 @@ public class MainActivity extends AppCompatActivity
             // Ignore video bitrate for GIF
             if(container != MediaContainer.GIF)
             {
-                String videoBitrateKStr = videoBitrateValue.getText().toString();
-                videoBitrateK = Integer.parseInt(videoBitrateKStr);
+                videoBitrateK = Integer.parseInt(videoBitrateValue.getText().toString());
             }
         }
         catch(NumberFormatException e)
         {
             Toast.makeText(this, R.string.videoBitrateValueInvalid, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try
+        {
+            audioBitrateK = Integer.parseInt(audioBitrateValue.getText().toString());
+        }
+        catch(NumberFormatException e)
+        {
+            Toast.makeText(this, R.string.audioBitrateValueInvalid, Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -1099,6 +1122,11 @@ public class MainActivity extends AppCompatActivity
                     findViewById(R.id.resolutionCustomContainer).setVisibility(View.GONE);
                 }
 
+                if(fpsSpinner.getSelectedItem().toString().equals(customString) == false)
+                {
+                    findViewById(R.id.fpsCustomContainer).setVisibility(View.GONE);
+                }
+
                 visibility = container.supportedAudioCodecs.size() > 0 ? View.VISIBLE : View.GONE;
 
                 for(int resId : AUDIO_SETTINGS_IDS)
@@ -1170,13 +1198,15 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        LinkedList<String> fps = new LinkedList<>(Arrays.asList("15", "24", "23.98", "25", "29.97", "30", "50"));
+        LinkedList<String> fps = new LinkedList<>(Arrays.asList("15", "23.98", "24", "25", "29.97", "30", "50"));
         if(videoInfo.videoFramerate != null && fps.contains(videoInfo.videoFramerate) == false)
         {
             fps.add(videoInfo.videoFramerate);
             Collections.sort(fps);
         }
+        fps.addLast(customString);
         fpsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_textview, fps));
+        fpsSpinner.setOnItemSelectedListener(new SetCustomAdapter(customString, R.id.fpsCustomContainer));
 
         LinkedList<String> resolution = new LinkedList<>();
         if(videoInfo.videoResolution != null && resolution.contains(videoInfo.videoResolution) == false)
@@ -1239,16 +1269,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        List<Integer> audioBitrateK = new ArrayList<>(Arrays.asList(15, 24, 32, 64, 96, 128, 192, 256, 320, 384, 448, 512));
-        if(videoInfo.audioBitrateK != null && audioBitrateK.contains(videoInfo.audioBitrateK) == false)
-        {
-            audioBitrateK.add(videoInfo.audioBitrateK);
-            Collections.sort(audioBitrateK);
-        }
-        audioBitrateSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_textview, audioBitrateK));
-
         List<Integer> sampleRate = new ArrayList<>(Arrays.asList(8000, 11025, 16000, 22050, 24000, 32000, 44100, 48000));
-        if(videoInfo.audioSampleRate != null && audioBitrateK.contains(videoInfo.audioSampleRate) == false)
+        if(videoInfo.audioSampleRate != null && (sampleRate.contains(videoInfo.audioSampleRate) == false))
         {
             sampleRate.add(videoInfo.audioSampleRate);
             Collections.sort(sampleRate);
@@ -1295,7 +1317,7 @@ public class MainActivity extends AppCompatActivity
             defaultAudioBitrateK = 128;
         }
 
-        setSpinnerSelection(audioBitrateSpinner, defaultAudioBitrateK);
+        audioBitrateValue.setText(Integer.toString(defaultAudioBitrateK));
 
         if(videoInfo.audioSampleRate != null)
         {
