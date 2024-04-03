@@ -38,5 +38,10 @@ jobs:
       run: ./gradlew lintRelease
     - name: Run unit tests
       run: ./gradlew testReleaseUnitTest
+    - name: Upload unit test reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: unittestsReport.htm
+        path: app/build/reports/tests/testReleaseUnitTest/index.html
     - name: FindBugs
       run: ./gradlew findbugs
