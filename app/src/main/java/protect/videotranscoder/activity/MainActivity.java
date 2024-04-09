@@ -182,6 +182,8 @@ public class MainActivity extends AppCompatActivity
         progressBar = findViewById(R.id.encodeProgress);
         rangeSeekBar.setEnabled(false);
 
+        
+
         containerSpinner = findViewById(R.id.containerSpinner);
         videoCodecSpinner = findViewById(R.id.videoCodecSpinner);
         fpsSpinner = findViewById(R.id.fpsSpinner);
@@ -644,8 +646,8 @@ public class MainActivity extends AppCompatActivity
     {
         List<String> command = new LinkedList<>();
 
-        // If the output exists, overwrite it
-        command.add("-y");
+
+        if (overwriteSwitch.isChecked()) command.add("-y");
 
         // Input file
         command.add("-i");
