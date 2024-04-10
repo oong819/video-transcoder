@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity
 
         selectVideoButton = findViewById(R.id.selectVideo);
         encodeButton = findViewById(R.id.encode);
+        overwriteSwitch = findViewById(R.id.overwriteSwitch);
         cancelButton = findViewById(R.id.cancel);
 
         startJumpBack = findViewById(R.id.startJumpBack);
