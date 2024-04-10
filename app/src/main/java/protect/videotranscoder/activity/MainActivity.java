@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity
     private TextView tvLeft, tvRight;
     private Button selectVideoButton;
     private Button encodeButton;
+    private Switch overwriteSwitch;
     private Button cancelButton;
     private ImageView startJumpBack;
     private ImageView startJumpForward;
