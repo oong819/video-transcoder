@@ -6,4 +6,10 @@
                         android:defaultValue="last-used"
                         android:entries="@array/fileSearchPathSettingArray"
                         android:entryValues="@array/fileSearchPathSettingValuesArray" />
+
+    <SwitchPreferenceCompat
+        app:key="overwriteOutput"
+        app:title="@string/overwriteOutputSetting"
+        app:summary="@string/overwriteOutputSettingSummary"/>
+    
 </PreferenceScreen>
