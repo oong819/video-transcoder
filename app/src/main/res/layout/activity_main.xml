@@ -86,6 +86,14 @@
                     android:visibility="gone"
                     android:text="@string/encode"
                     />
+                <Switch
+                    android:id="@+id/overwriteSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone"
+                    android:text="@string/overwrite"
+                    />
                 <Button
                     android:id="@+id/cancel"
                     android:layout_width="wrap_content"

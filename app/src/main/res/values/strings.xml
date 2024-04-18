@@ -5,6 +5,7 @@
 
     <string name="selectVideo">Select\nVideo</string>
     <string name="encode">Encode</string>
+    <string name="overwrite">Allow overwrite output file</string>
     <string name="cancel">Cancel</string>
 
     <string name="ok">OK</string>
@@ -89,5 +90,8 @@
     <string name="fileSearchPathSettingSummary">The path on the file system where the file browser will open when searching for a media file</string>
     <string name="fileSearchPathSettingLastUsed">Last used path</string>
     <string name="fileSearchPathSettingExternal">External storage</string>
+
+    <string name="overwriteOutputSetting">Overwrite output</string>
+    <string name="overwriteOutputSettingSummary">If a file with the same name appears in the output directory, overwrite it</string>
 
 </resources>

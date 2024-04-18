@@ -37,6 +37,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -147,6 +148,7 @@ public class MainActivity extends AppCompatActivity
     private TextView tvLeft, tvRight;
     private Button selectVideoButton;
     private Button encodeButton;
+    private Switch overwriteSwitch;
     private Button cancelButton;
     private ImageView startJumpBack;
     private ImageView startJumpForward;
@@ -167,6 +169,7 @@ public class MainActivity extends AppCompatActivity
 
         selectVideoButton = findViewById(R.id.selectVideo);
         encodeButton = findViewById(R.id.encode);
+        overwriteSwitch = findViewById(R.id.overwriteSwitch);
         cancelButton = findViewById(R.id.cancel);
 
         startJumpBack = findViewById(R.id.startJumpBack);
@@ -181,6 +184,8 @@ public class MainActivity extends AppCompatActivity
         rangeSeekBar =  findViewById(R.id.rangeSeekBar);
         progressBar = findViewById(R.id.encodeProgress);
         rangeSeekBar.setEnabled(false);
+
+        
 
         containerSpinner = findViewById(R.id.containerSpinner);
         videoCodecSpinner = findViewById(R.id.videoCodecSpinner);
@@ -644,8 +649,8 @@ public class MainActivity extends AppCompatActivity
     {
         List<String> command = new LinkedList<>();
 
-        // If the output exists, overwrite it
-        command.add("-y");
+
+        if (overwriteSwitch.isChecked()) command.add("-y");
 
         // Input file
         command.add("-i");
