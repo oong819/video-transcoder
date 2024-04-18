@@ -91,4 +91,7 @@
     <string name="fileSearchPathSettingLastUsed">Last used path</string>
     <string name="fileSearchPathSettingExternal">External storage</string>
 
+    <string name="overwriteOutputSetting">Overwrite output</string>
+    <string name="overwriteOutputSettingSummary">If a file with the same name appears in the output directory, overwrite it</string>
+
 </resources>
